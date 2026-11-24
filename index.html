@@ -1,0 +1,35 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="description" content="Beyond the Map: a first-person pixel exploration game. Play on a computer with a keyboard and mouse.">
+  <title>Beyond the Map — Play</title>
+  <link rel="icon" href="game.icon.png">
+  <style>
+    *{box-sizing:border-box}html,body{margin:0;min-height:100%;background:#101211;color:#d7dad3;font-family:ui-monospace,monospace;font-size:16px}
+    body{height:100dvh;display:flex;flex-direction:column;overflow:hidden}
+    header,footer{display:flex;gap:20px;align-items:center;padding:12px 22px;flex-shrink:0;font-size:14px}
+    header{border-bottom:1px solid #30342f;min-height:55px}strong{font-weight:500;letter-spacing:.13em}header span{color:#9caa9a;flex:1}
+    button,a{font:inherit;color:inherit}button{background:none;border:1px solid #41483d;padding:6px 12px;cursor:pointer}button:hover{background:#293026}
+    main{flex:1;min-height:0;display:flex;justify-content:center;align-items:center;background:#070807}
+    #player{width:min(100vw,calc((100dvh - 107px)*1.6));aspect-ratio:8/5;background:#070807}
+    iframe{display:block;width:100%;height:100%;border:0}footer{justify-content:space-between;min-height:52px;color:#a7aea3}
+    footer a{color:#b7c5b0}#mobile{display:none;background:#263023;padding:14px 20px;font:16px/1.5 system-ui,sans-serif}
+    @media(pointer:coarse){#mobile{display:block}header span,footer span{display:none}}
+    @media(max-width:650px){header{gap:9px;padding:10px;font-size:12px}button{padding:6px}footer{padding:10px;font-size:12px}}
+    :fullscreen #player{width:min(100vw,160vh);height:min(100vh,62.5vw)}
+  </style>
+</head>
+<body>
+  <header><strong>BEYOND THE MAP</strong><span>Desktop demo · Keyboard & mouse</span><button id="restart" type="button">Restart</button><button id="fullscreen" type="button">Fullscreen</button></header>
+  <aside id="mobile">This demo is designed for a computer with a keyboard and mouse. Open this link on your computer to play. 此试玩需使用电脑键盘和鼠标。</aside>
+  <main id="stage"><div id="player"><iframe id="game" title="Beyond the Map game" src="game.html" allow="autoplay; fullscreen" allowfullscreen></iframe></div></main>
+  <footer><span>WASD move · Hold right mouse to look · E investigate · Tab notes</span><a href="credits.txt" target="_blank" rel="noopener">Credits</a></footer>
+  <script>
+    const frame=document.getElementById('game');
+    document.getElementById('restart').onclick=()=>{frame.src='game.html';frame.focus()};
+    document.getElementById('fullscreen').onclick=()=>{const stage=document.getElementById('stage');if(document.fullscreenElement){document.exitFullscreen()}else{stage.requestFullscreen().then(()=>frame.focus()).catch(()=>{})}};
+  </script>
+</body>
+</html>
