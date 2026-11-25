@@ -24,11 +24,11 @@
 <body>
   <header><strong>BEYOND THE MAP</strong><span>Desktop demo · Keyboard & mouse</span><button id="restart" type="button">Restart</button><button id="fullscreen" type="button">Fullscreen</button></header>
   <aside id="mobile">This demo is designed for a computer with a keyboard and mouse. Open this link on your computer to play. 此试玩需使用电脑键盘和鼠标。</aside>
-  <main id="stage"><div id="player"><iframe id="game" title="Beyond the Map game" src="game.html" allow="autoplay; fullscreen" allowfullscreen></iframe></div></main>
+  <main id="stage"><div id="player"><iframe id="game" title="Beyond the Map game" src="game.html?build=20261125-wide-halo" allow="autoplay; fullscreen" allowfullscreen></iframe></div></main>
   <footer><span>WASD move · Hold right mouse to look · E investigate · Tab notes</span><a href="credits.txt" target="_blank" rel="noopener">Credits</a></footer>
   <script>
     const frame=document.getElementById('game');
-    document.getElementById('restart').onclick=()=>{frame.src='game.html';frame.focus()};
+    document.getElementById('restart').onclick=()=>{frame.src='game.html?build=20261125-wide-halo';frame.focus()};
     document.getElementById('fullscreen').onclick=()=>{const stage=document.getElementById('stage');if(document.fullscreenElement){document.exitFullscreen()}else{stage.requestFullscreen().then(()=>frame.focus()).catch(()=>{})}};
   </script>
 </body>

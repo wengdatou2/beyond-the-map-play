@@ -110,10 +110,24 @@ body {
 			<div id="status-notice"></div>
 		</div>
 
-		<script src="wasm-loader.js"></script>
+		<script>
+// Give each playable build a distinct pack URL, avoiding stale browser caches.
+(() => {
+  const fetchFile = window.fetch.bind(window);
+  window.fetch = (input, init) => {
+    const url = new URL(typeof input === 'string' ? input : input.url, location.href);
+    if (url.origin === location.origin && url.pathname.endsWith('/game.pck')) {
+      url.searchParams.set('build', '20261125-wide-halo');
+      return fetchFile(url.href, init);
+    }
+    return fetchFile(input, init);
+  };
+})();
+</script>
+<script src="wasm-loader.js"></script>
 		<script src="game.js"></script>
 		<script>
-const GODOT_CONFIG = {"args":[],"canvasResizePolicy":0,"emscriptenPoolSize":8,"ensureCrossOriginIsolationHeaders":true,"executable":"game","experimentalVK":false,"fileSizes":{"game.pck":3042700,"game.wasm":39514754},"focusCanvas":true,"gdextensionLibs":[],"godotPoolSize":4};
+const GODOT_CONFIG = {"args":[],"canvasResizePolicy":0,"emscriptenPoolSize":8,"ensureCrossOriginIsolationHeaders":true,"executable":"game","experimentalVK":false,"fileSizes":{"game.pck":3042716,"game.wasm":39514754},"focusCanvas":true,"gdextensionLibs":[],"godotPoolSize":4};
 const GODOT_THREADS_ENABLED = false;
 const engine = new Engine(GODOT_CONFIG);
 
